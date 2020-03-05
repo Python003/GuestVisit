@@ -41,11 +41,11 @@ def visit_to_confirm():
 
 		sql = 'select tva.data_seq,tva.visitor,tva.identity_no,tva.schedule_date,tva.schedule_time,tva.company, \
 				tva.approve_status,u.user_name,u.depart,u.contact_info from t_visit_apply tva,m_user u \
-				where tva.employee_id = u.user_id and tva.schedule_date >= \'{0}\' \
+				where tva.employee_id = u.user_id and tva.schedule_date >= \'{0}\' and approver_id is null \
 				order by tva.employee_id'.format(today)
 
-		with open(r'C:\Users\admin\Desktop\sql.txt', 'w') as fp:
-			fp.write(sql)
+		#with open(r'C:\Users\admin\Desktop\sql.txt', 'w') as fp:
+		#	fp.write(sql)
 
 		cur.execute(sql)
 		rows = cur.fetchall()
